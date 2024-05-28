@@ -10,6 +10,8 @@ import Fluent
 import Vapor
 
 final class Channel: Model, @unchecked Sendable, Validatable {
+    
+    
     static let schema = "channel"
     
     @ID(key: .id)
@@ -21,11 +23,21 @@ final class Channel: Model, @unchecked Sendable, Validatable {
     @Field(key: "description")
     var description: String
     
+    
+    
     init() { }
     init(id: UUID? = nil, name: String, description: String) {
         self.id = id
         self.name = name
         self.description = description
+    }
+    
+    func toDTO() -> ChannelDTO {
+        return ChannelDTO(
+            id: self.id,
+            name: self.name,
+            description: self.description
+        )
     }
     
     static func validations(_ validations: inout Vapor.Validations) {

@@ -43,6 +43,7 @@ public func configure(_ app: Application) async throws {
     
     // register the Controller
     try app.register(collection: UserController())
+    try app.register(collection: ChannelController())
     
     
     // Add this configeration so JWT will Provide a Tocken for sign in user
